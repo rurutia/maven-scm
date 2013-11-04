@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Contact Mapper with Nested Results for Collection -->
+<mapper namespace="com.cbs.persistence.mapper.EmailMapper">
+
+    <resultMap id="emailResultMap" type="Email">
+        <id property="id" column="ID_" />
+        <result property="process_id" column="PROCESS_ID_" />
+        <result property="type" column="TYPE_" />
+        <result property="from" column="FROM_" />
+        <result property="to" column="TO_" />
+        <result property="subject" column="SUBJECT_" />
+        <result property="content" column="CONTENT_" />
+        <result property="time" column="TIME_" />
+    </resultMap>
+
+    <select id="findAll" resultMap="emailResultMap">
+        SELECT
+        ID_,
+        PROCESS_ID_,
+        TYPE_,
+        FROM_,
+        TO_,
+        SUBJECT_,
+        CONTENT_,
+        TIME_
+        FROM CBS_PROCESS_EMAIL
+    </select>     
+    
+</mapper>

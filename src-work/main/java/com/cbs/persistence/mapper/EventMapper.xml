@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cbs.persistence.mapper.EventMapper">
+
+	<update id="createNewTable" parameterType="String" > 
+	      CREATE TABLE IF NOT EXISTS ${value} ( 
+	        ID_ INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	        USER_ VARCHAR(64) NOT NULL,
+	        PROCESS_ID_ VARCHAR(64) NOT NULL,
+	        CONTENT_ VARCHAR(4000) NOT NULL,
+	        CREATE_TIME_ TIMESTAMP NOT NULL,
+	        CONSTRAINT ACT_FK_USER_ID FOREIGN KEY (USER_)  REFERENCES ACT_ID_USER (ID_)
+	      )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_bin; 
+	</update>
+	
+    <insert id="insertEvent" parameterType="Event" >
+		  insert into ACT_CBS_EVENT (USER_, PROCESS_ID_, CONTENT_)
+		  values (#{user}, #{process_id}, #{content})
+	</insert>
+	
+	<resultMap id="eventResultMap" type="Event">
+		<id property="id" column="ID_" />
+		<result property="user" column="USER_" />
+		<result property="process_id" column="PROCESS_ID_" />
+		<result property="content" column="CONTENT_" />
+		<result property="create_time" column="CREATE_TIME_" />
+	</resultMap>
+
+    <select id="findAll" resultMap="eventResultMap">
+        SELECT
+        ID_,
+        USER_,
+        PROCESS_ID_,
+        CONTENT_,
+        CREATE_TIME_
+        FROM ACT_CBS_EVENT;
+    </select>   
+    
+</mapper>

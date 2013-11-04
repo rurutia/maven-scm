@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cbs.persistence.mapper.ProcessCommentMapper">
+	
+    <insert id="insertProcessComment" parameterType="ProcessComment" >
+		  insert into ACT_HI_COMMENT (ID_,TYPE_,TIME_,USER_ID_,PROC_INST_ID_,ACTION_,MESSAGE_)
+		  values (#{id}, #{type}, now(), #{userId}, #{processInstanceId}, #{action}, #{message})
+	</insert>
+	
+	<resultMap id="eventResultMap" type="ProcessComment">
+		<id property="id" column="ID_" />
+		<result property="time" column="TIME_" />
+		<result property="userId" column="USER_ID_" />
+		<result property="processInstanceId" column="PROC_INST_ID_" />
+		<result property="message" column="MESSAGE_" />
+	</resultMap>
+
+    <select id="findByProcessId"  parameterType="String" resultMap="eventResultMap">
+        SELECT
+        ID_,
+        TIME_,
+        USER_ID_,
+        PROC_INST_ID_,
+        MESSAGE_
+        FROM ACT_HI_COMMENT WHERE TYPE_="processComment" and PROC_INST_ID_=#{processId};
+    </select>  
+    
+    <select id="findByProcessIdAndUserId"  parameterType="map" resultMap="eventResultMap">
+        SELECT
+        ID_,
+        TIME_,
+        USER_ID_,
+        PROC_INST_ID_,
+        MESSAGE_
+        FROM ACT_HI_COMMENT 
+        WHERE TYPE_="processComment" and PROC_INST_ID_=#{processId} and USER_ID_=#{userId};
+    </select> 
+    
+    <select id="findSingleById" parameterType="String" resultMap="eventResultMap">
+    	SELECT
+        ID_,
+        TIME_,
+        USER_ID_,
+        PROC_INST_ID_,
+        MESSAGE_
+        FROM ACT_HI_COMMENT WHERE ID_=#{id}
+    </select>
+    
+    <delete id="deleteById" parameterType="String">
+    	DELETE FROM ACT_HI_COMMENT WHERE ID_=#{id}
+    </delete>
+    
+     <select id="getCountByProcessId" parameterType="String" resultType="int">
+        SELECT COUNT(*) AS TOTAL 
+        FROM ACT_HI_COMMENT 
+        WHERE TYPE_="processComment" and PROC_INST_ID_=#{processId};
+    </select>
+    
+    <update id="changeTimer">
+    	UPDATE ACT_RU_JOB 
+    	SET REPEAT_="R3/2013-08-08T09:13:48/PT30S"
+    	WHERE TYPE_="timer"
+    </update>
+    
+</mapper>
+
