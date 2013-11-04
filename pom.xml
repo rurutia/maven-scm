@@ -3,7 +3,7 @@
 	<groupId>activiti-cbs</groupId>
 	<artifactId>activiti-rest-cbs</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.1</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>activiti-cbs-rest Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 
@@ -256,11 +256,11 @@
 			</repository> -->
 	</repositories>
 
-	<scm>
-		<connection>scm:git:git@github.com:rurutia/maven-scm.git</connection>
-		<url>scm:git:git@github.com:rurutia/maven-scm.git</url>
-		<developerConnection>scm:git:git@github.com:rurutia/maven-scm.git</developerConnection>
-	  <tag>activiti-rest-cbs-0.0.1</tag>
+    <scm>
+    <connection>scm:git:git@github.com:rurutia/maven-scm.git</connection>
+    <url>scm:git:git@github.com:rurutia/maven-scm.git</url>
+    <developerConnection>scm:git:git@github.com:rurutia/maven-scm.git</developerConnection>
+      <tag>HEAD</tag>
   </scm>
 
 	<build>
