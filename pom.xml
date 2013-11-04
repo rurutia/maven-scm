@@ -8,8 +8,6 @@
 	<name>activiti-cbs-rest Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 
-
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<activiti.version>5.13</activiti.version>
@@ -259,11 +257,21 @@
 			</repository> -->
 	</repositories>
 
+	<scm>
+		<connection>scm:git:git@github.com:rurutia/maven-scm.git</connection>
+		<url>scm:git:git@github.com:rurutia/maven-scm.git</url>
+		<developerConnection>scm:git:git@github.com:rurutia/maven-scm.git</developerConnection>
+	</scm>
+
 	<build>
 		<finalName>activiti-cbs-rest</finalName>
 		<pluginManagement>
 			<plugins>
-
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>2.4.2</version>
+				</plugin>
 
 
 				<plugin>
@@ -301,7 +309,7 @@
 							<configuration>
 								<target>
 									<echo>serverDeployment is ${catalina.home}</echo>
-<echo>serverDeployment is ${activiti.version}</echo>
+									<echo>serverDeployment is ${activiti.version}</echo>
 								</target>
 							</configuration>
 						</execution>
